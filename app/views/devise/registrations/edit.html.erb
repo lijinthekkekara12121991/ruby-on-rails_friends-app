@@ -1,0 +1,50 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="container">
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br/><br/>
+    </div>
+    <div class="field"> 
+      <%= f.password_field :password, placeholder: "New password..." %>
+      <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em><br/><br/>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.text_field :password_confirmation, placeholder: "Confirm password..." %><br/><br/>
+    </div>
+    <div class="field">
+      <%= f.password_field :current_password, placeholder: "Current password..." %><br/><br/>
+    </div>
+    <%= link_to 'Back', :back, class: "btn btn-secondary" %>
+    <%= f.submit class: "btn btn-secondary" %><br/><br/>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
+      Cancel my account
+    </button> 
+  </div>
+<% end %>
+
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Unhappy with the account?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h2>Are you not happy with our services, or do you want the app no more?</h2>
+        <h4>We are sad to hear that!</h4>
+      </div>
+      <div class="modal-footer">
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
