@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :correct_user, only: %i[ edit update destroy]
+  before_action :correct_user, only: %i[ edit update destroy ]
 
   # GET /friends or /friends.json
   def index
@@ -19,6 +19,10 @@ class FriendsController < ApplicationController
 
   # GET /friends/1/edit
   def edit
+  end
+
+  def search
+    @search_friends = current_user.friends.where(first_name: "#{params[:name]}") 
   end
 
   def correct_user

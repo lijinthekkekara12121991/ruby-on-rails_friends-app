@@ -1,4 +1,4 @@
-<h3>Friends list</h3>
+<h3>Searched friends</h3>
 <div>
   <%= render 'friends/namesearch' %>
 
@@ -13,7 +13,7 @@
     </thead>
 
     <tbody>
-      <% @friends.each do |friend| %>
+      <% @search_friends.each do |friend| %>
         <% if friend.user == current_user %>
           <tr>
             <td><%= link_to friend.first_name + ' ' + friend.last_name, friend %></td>
